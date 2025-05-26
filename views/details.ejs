@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+    <%-include("./include/navbar.ejs")%>
     <h1>Student Details</h1>
 
     <div class="card">
@@ -25,6 +25,9 @@
         <div class="btn">
             <form action="/payfee/<%=student._id%>" method="get">
                 <button class="payfee buttonbtn">Pay fee</button>
+            </form>
+            <form action="/edit/<%=student._id%>" method="get">
+                <button class="payfee buttonbtn">Edit</button>
             </form>
             <form action="/delete/<%=student._id%>" method="get">
                 <button class="deletbtn buttonbtn">Delete</button>

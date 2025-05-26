@@ -148,6 +148,17 @@ app.post("/payfee/:id", async (req, res) => {
     }
 });
 
+// GET edit page
+app.get('/edit/:id', async (req, res) => {
+  const student = await Student.findById(req.params.id);
+  res.render('edit.ejs', { student });
+});
+
+// POST update
+app.post("/edit/:id", async (req, res) => {
+  await Student.findByIdAndUpdate(req.params.id, req.body);
+  res.redirect('/details/' + req.params.id);
+});
 
 
 app.listen(port, (req, res) => {

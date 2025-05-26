@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Student</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #8360c3, #2ebf91);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #ffffff;
+      max-width: 500px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    input {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #2ebf91;
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #185a9d, #43cea2);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      input, button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Edit Student Information</h2>
+    <form action="/edit/<%= student._id %>" method="POST">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" value="<%= student.username %>" required />
+
+      <label for="student_name">Student Name</label>
+      <input type="text" id="student_name" name="student_name" value="<%= student.student_name %>" required />
+
+      <label for="join_date">Join Date</label>
+      <input type="date" id="join_date" name="join_date" value="<%= student.join_date.toISOString().split('T')[0] %>" required />
+
+      <label for="fathers_name">Father's Name</label>
+      <input type="text" id="fathers_name" name="fathers_name" value="<%= student.fathers_name %>" required />
+
+      <label for="fee">Fee (₹)</label>
+      <input type="number" id="fee" name="fee" value="<%= student.fee %>" required />
+
+      <button type="submit">Update Student</button>
+    </form>
+  </div>
+
+</body>
+</html>
