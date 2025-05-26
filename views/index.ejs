@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathsala</title>
+    <link rel="stylesheet" href="/stylesheet/index.css">
+
+
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Pathsala</div>
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        <a href="/addmition">
+            <button class="addition-btn">Addmition</button>
+        </a>
+    </nav>
+
+    <div class="mainbox">
+        <div class="details">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Father's Name</th>
+                        <th>Join Date</th>
+                        <th>Fee</th>
+                        <th>Click for Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% allstudent.forEach((st, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= st.student_name %></td>
+                            <td><%= st.fathers_name %></td>
+                            <td><%= new Date(st.join_date).toLocaleDateString("en-IN", { day: '2-digit', month: '2-digit', year: 'numeric' }) %></td>
+                            <td><%= st.fee %></td>
+                            <td>
+                                <form action="/details/<%= st._id %>" method="get">
+                                    <button type="submit">View Details</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

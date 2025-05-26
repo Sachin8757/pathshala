@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="/stylesheet/details.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+
+<body>
+
+    <h1>Student Details</h1>
+
+    <div class="card">
+        <p><strong>Name:</strong> <%= student.student_name %></p>
+        <p><strong>Username:</strong> <%= student.username %></p>
+        <p><strong>Father's Name:</strong> <%= student.fathers_name %></p>
+        <p><strong>Fee:</strong> ₹<%= student.fee %> / month</p>
+        <p><strong>Join Date:</strong>
+            <%= new Date(student.join_date).toLocaleDateString("en-IN", { day: "2-digit", month: "2-digit", year: "numeric" }) %>
+        </p>
+        <div class="btn">
+            <form action="/payfee/<%=student._id%>" method="get">
+                <button class="payfee buttonbtn">Pay fee</button>
+            </form>
+            <form action="/delete/<%=student._id%>" method="get">
+                <button class="deletbtn buttonbtn">Delete</button>
+            </form>
+        </div>
+    </div>
+
+    <h2>Fee Payment Status</h2>
+
+    <% const monthRecord = student.months && student.months[0]; const monthList = [ 
+        { key: 'jan', name: 'January' }, { key: 'feb', name: 'February' },
+        { key: 'mar', name: 'March' }, { key: 'apr', name: 'April' },
+        { key: 'may', name: 'May' }, { key: 'jun', name: 'June' },
+        { key: 'jul', name: 'July' }, { key: 'aug', name: 'August' },
+        { key: 'sep', name: 'September' }, { key: 'oct', name: 'October' },
+        { key: 'nov', name: 'November' }, { key: 'dec', name: 'December' }
+    ]; %>
+
+    <% if (monthRecord) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% monthList.forEach(m => { %>
+                    <tr>
+                        <td><%= m.name %></td>
+                        <td class="<%= monthRecord[m.key] ? 'paid' : 'unpaid' %>">
+                            <%= monthRecord[m.key] ? monthRecord[m.key] : 'Not Paid' %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p style="color: red; text-align: center;">No payment record found for this student.</p>
+    <% } %>
+
+</body>
+
+</html>
