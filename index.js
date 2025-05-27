@@ -40,12 +40,12 @@ app.get("/addmition", (req, res) => {
 })
 
 app.post("/addmition", async (req, res) => {
-    const { username, student_name, join_date, fathers_name, fee, password } = req.body;
+    const {roll_no, student_name, join_date, fathers_name, fee, password } = req.body;
     if (password === process.env.PASSWORD) {
         try {
 
             const newStudent = new Student({
-                username,
+                roll_no,
                 student_name,
                 join_date,
                 fathers_name,
@@ -149,6 +149,7 @@ app.post("/payfee/:id", async (req, res) => {
 // GET edit page
 app.get('/edit/:id', async (req, res) => {
     const student = await Student.findById(req.params.id);
+    console.log(student)
     res.render('edit.ejs', { student });
 });
 
@@ -168,8 +169,29 @@ app.post("/edit/:id", async (req, res) => {
 app.get('/about', async (req, res) => {
     res.render('about.ejs');
 });
+//search route
+app.post("/search",async(req,res)=>{
+    const {roll}=req.body;
+    const student=await Student.findOne({roll_no:roll});
+    console.log(student)
+    if(student){
+        res.render("search.ejs",{student})
+    }else{
+        return res.status(403).send("Roll_No Not Exist");
+    }
+    
+})
 
-
+//result route
+app.get('/result', async (req, res) => {
+    return res.status(500).send("Exam Not happend")
+    // res.render("exam.ejs")
+});
+app.post('/result/:id', async (req, res) => {
+    const {id}=req.body;
+    const student=await Student.findById(id)
+    return res.status(500).send("Exam Not happend")
+});
 app.listen(port, (req, res) => {
     console.log(`server runging on ${port}...`)
 })

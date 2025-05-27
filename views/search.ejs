@@ -26,20 +26,18 @@
                 </tr>
             </thead>
             <tbody>
-                <% allstudent.forEach((st, index) => { %>
                     <tr>
-                        <td><%= st.roll_no %></td>
-                        <td><%= st.student_name %></td>
-                        <td><%= st.fathers_name %></td>
-                        <td><%= new Date(st.join_date).toLocaleDateString("en-IN", { day: '2-digit', month: '2-digit', year: 'numeric' }) %></td>
-                        <td>₹<%= st.fee %></td>
+                        <td><%= student.roll_no %></td>
+                        <td><%= student.student_name %></td>
+                        <td><%= student.fathers_name %></td>
+                        <td><%= new Date(student.join_date).toLocaleDateString("en-IN", { day: '2-digit', month: '2-digit', year: 'numeric' }) %></td>
+                        <td>₹<%= student.fee %></td>
                         <td>
-                            <form action="/details/<%= st._id %>" method="get">
+                            <form action="/details/<%= student._id %>" method="get">
                                 <button type="submit"><i class="fas fa-eye"></i> View</button>
                             </form>
                         </td>
                     </tr>
-                <% }); %>
             </tbody>
         </table>
     </div>
