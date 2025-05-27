@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Result</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #00f2fe, #4facfe);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      input, button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><i class="fas fa-file-alt"></i> Submit Student Result</h2>
+    <form action="/submit-result" method="POST">
+      <label for="roll_no">Student Roll Number:</label>
+      <input type="text" id="roll_no" name="roll_no" required>
+
+      <label for="math">Math Marks:</label>
+      <input type="text" id="math" name="math" required>
+
+      <label for="english">English Marks:</label>
+      <input type="text" id="english" name="english" required>
+
+      <label for="hindi">Hindi Marks:</label>
+      <input type="text" id="hindi" name="hindi" required>
+      <label for="date">Date of Exam</label>
+      <input type="date" id="date" name="date" required>
+
+      <button type="submit">Submit Result</button>
+    </form>
+  </div>
+</body>
+</html>

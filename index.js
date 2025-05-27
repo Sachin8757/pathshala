@@ -5,6 +5,7 @@ const express = require('express')
 const mongoose = require("./model/connection.js")
 const Student = require("./model/student.js")//student schema
 const Month = require("./model/fee.js");//fee schema
+const Result = require('./model/result.js');//result schema
 var methodoverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const path = require('path');
@@ -40,25 +41,32 @@ app.get("/addmition", (req, res) => {
 })
 
 app.post("/addmition", async (req, res) => {
-    const {roll_no, student_name, join_date, fathers_name, fee, password } = req.body;
-    if (password === process.env.PASSWORD) {
-        try {
-
-            const newStudent = new Student({
-                roll_no,
-                student_name,
-                join_date,
-                fathers_name,
-                fee
-            });
-            await newStudent.save();
-            res.redirect("/")
-        } catch (error) {
-            res.status(500).json({ error: error.message });
-        }
+    const { roll_no, student_name, join_date, fathers_name, fee, password } = req.body;
+    const student = await Student.findOne({ roll_no: roll_no });
+    if (student) {
+        res.status(300).send("roll no exist")
     } else {
-        res.error("password is worng")
+
+        if (password === process.env.PASSWORD) {
+            try {
+
+                const newStudent = new Student({
+                    roll_no,
+                    student_name,
+                    join_date,
+                    fathers_name,
+                    fee
+                });
+                await newStudent.save();
+                res.redirect("/")
+            } catch (error) {
+                res.status(500).json({ error: error.message });
+            }
+        } else {
+            res.error("password is worng")
+        }
     }
+
 
 })
 
@@ -159,8 +167,8 @@ app.post("/edit/:id", async (req, res) => {
     if (password === process.env.PASSWORD) {
         await Student.findByIdAndUpdate(req.params.id, req.body);
         res.redirect('/details/' + req.params.id);
-    }else{
-         return res.status(403).send("Incorrect admin password.");
+    } else {
+        return res.status(403).send("Incorrect admin password.");
     }
 
 });
@@ -170,28 +178,76 @@ app.get('/about', async (req, res) => {
     res.render('about.ejs');
 });
 //search route
-app.post("/search",async(req,res)=>{
-    const {roll}=req.body;
-    const student=await Student.findOne({roll_no:roll});
+app.post("/search", async (req, res) => {
+    const { roll } = req.body;
+    const student = await Student.findOne({ roll_no: roll });
     console.log(student)
-    if(student){
-        res.render("search.ejs",{student})
-    }else{
+    if (student) {
+        res.render("search.ejs", { student })
+    } else {
         return res.status(403).send("Roll_No Not Exist");
     }
-    
+
 })
 
 //result route
 app.get('/result', async (req, res) => {
-    return res.status(500).send("Exam Not happend")
-    // res.render("exam.ejs")
+    // return res.status(500).send("Exam Not happend")
+    res.render("exam.ejs")
 });
-app.post('/result/:id', async (req, res) => {
-    const {id}=req.body;
-    const student=await Student.findById(id)
-    return res.status(500).send("Exam Not happend")
+app.post('/result', async (req, res) => {
+    const { roll_no } = req.body;
+
+    try {
+        const student = await Student.findOne({ roll_no }).populate("result");
+
+        if (!student) {
+            return res.status(400).send("Roll number does not exist");
+        }
+        console.log(student)
+        res.render("result.ejs", { student });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
 });
+
+
+//submit result route for each student
+app.get("/submit-result",(req,res)=>{
+    res.render("submit_result.ejs")
+})
+app.post("/submit-result", async (req, res) => {
+  const { roll_no, math, english, hindi,date } = req.body;
+
+  try {
+    const student = await Student.findOne({ roll_no });
+
+    if (!student) {
+      return res.status(404).send("Student not found.");
+    }
+
+    const newResult = new Result({
+      studentId: student._id,
+      Date:date,
+      Math: math,
+      English: english,
+      Hindi: hindi
+    });
+
+    const savedResult = await newResult.save();
+
+    student.result.push(savedResult._id);
+    await student.save();
+
+    res.redirect("/")
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("An error occurred while submitting the result.");
+  }
+});
+
+//listing port
 app.listen(port, (req, res) => {
     console.log(`server runging on ${port}...`)
 })

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Check Roll Number</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+  
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #5dade2;
+      outline: none;
+      box-shadow: 0 0 5px rgba(93, 173, 226, 0.5);
+    }
+
+    button {
+      padding: 12px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+    }
+
+    .icon {
+      font-size: 40px;
+      color: #0072ff;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      input,
+      button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">
+      <i class="fas fa-id-card-alt"></i>
+    </div>
+    <h2>Student Roll No</h2>
+    <form action="/result" method="POST">
+      <input type="text" name="roll_no" placeholder="Enter Roll Number" required />
+      <!-- <input type="date" name="date"required /> -->
+      <button type="submit"><i class="fas fa-search"></i> Submit</button>
+    </form>
+  </div>
+</body>
+</html>

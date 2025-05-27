@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Result</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #9face6);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .result-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 1rem;
+      font-size: 28px;
+    }
+
+    .student-info {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .student-info p {
+      margin: 6px 0;
+      font-weight: 500;
+      color: #444;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      font-size: 15px;
+    }
+
+    th {
+      background-color: #2ae8f2;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+
+    .total {
+      font-weight: bold;
+      background: #f0f0f0;
+    }
+
+    .back-btn {
+      background: #1fc5eb;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #ff7878;
+    }
+
+    @media (max-width: 768px) {
+      .result-card {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      th, td {
+        font-size: 13px;
+        padding: 10px;
+      }
+
+      .student-info p {
+        font-size: 14px;
+      }
+
+      .back-btn {
+        padding: 10px 18px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="result-card">
+  <h2><i class="fas fa-poll"></i> Student Result</h2>
+
+  <div class="student-info">
+    <p><strong>Name:</strong> <%= student.student_name %></p>
+    <p><strong>Father's Name:</strong> <%= student.fathers_name %></p>
+    <p><strong>Roll No:</strong> <%= student.roll_no %></p>
+    <p><strong>Join Date:</strong> <%= new Date(student.join_date).toLocaleDateString() %></p>
+  </div>
+
+  <% student.result.forEach((res, i) => { %>
+    <table>
+      <thead>
+        <tr><th colspan="3">Result <%= i + 1 %> - <%= new Date(res.Date).toLocaleDateString() %></th></tr>
+        <tr>
+          <th>Subject</th>
+          <th>Total Marks</th>
+          <th>Obtained Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>English</td><td>50</td><td><%= res.English %></td></tr>
+        <tr><td>Math</td><td>50</td><td><%= res.Math %></td></tr>
+        <tr><td>Hindi</td><td>50</td><td><%= res.Hindi %></td></tr>
+        <tr class="total">
+          <td>Total</td>
+          <td>150</td>
+          <td>
+            <%= (parseInt(res.English) || 0) + (parseInt(res.Math) || 0) + (parseInt(res.Hindi) || 0) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <% }) %>
+
+  <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+</div>
+
+</body>
+</html>
