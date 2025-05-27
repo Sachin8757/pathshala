@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pathshala | Home</title>
+
+  <!-- Google Font & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0f1f0c3.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #e0f7fa);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      padding: 1rem 2rem;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffeb3b;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1rem;
+    }
+
+    .hero img {
+      width: 100%;
+      max-width: 500px;
+      margin: 1rem;
+      border-radius: 15px;
+    }
+
+    .hero-text {
+      max-width: 500px;
+      margin: 1rem;
+    }
+
+    .hero-text h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(to right, #36d1dc, #5b86e5);
+      padding: 12px 24px;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, #5b86e5, #36d1dc);
+      transform: translateY(-2px);
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 3rem 1rem;
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-card i {
+      font-size: 2rem;
+      color: #4caf50;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background: #333;
+      color: #eee;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-text h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1><i class="fas fa-school"></i> Pathshala</h1>
+  <nav>
+    <a href="/add"><i class="fas fa-user-plus"></i> Admission</a>
+    <a href="/students"><i class="fas fa-users"></i> Students</a>
+    <a href="/search"><i class="fas fa-search"></i> Search</a>
+    <a href="/about"><i class="fas fa-info-circle"></i> About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h2>Welcome to Pathshala</h2>
+    <p>A smart student management system built for tuition centers and educational institutions. Manage admissions, fee payments, and student records effortlessly.</p>
+    <a href="/add" class="btn"><i class="fas fa-rocket"></i> Get Started</a>
+  </div>
+  <img src="https://images.unsplash.com/photo-1588072432836-e10032774350" alt="Students Learning">
+</section>
+
+<section class="features">
+  <div class="feature-card">
+    <i class="fas fa-user-plus"></i>
+    <h3>Easy Admissions</h3>
+    <p>Enroll new students quickly with a simple and intuitive form.</p>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-rupee-sign"></i>
+    <h3>Fee Management</h3>
+    <p>Track and record monthly fee payments securely.</p>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-database"></i>
+    <h3>Student Records</h3>
+    <p>Access and manage all student data from one place.</p>
+  </div>
+</section>
+
+<footer>
+  &copy; <%= new Date().getFullYear() %> Pathshala — Made with ❤️ for Learning
+</footer>
+
+</body>
+</html>

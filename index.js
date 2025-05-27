@@ -160,6 +160,11 @@ app.post("/edit/:id", async (req, res) => {
   res.redirect('/details/' + req.params.id);
 });
 
+//about route
+app.get('/about', async (req, res) => {
+  res.render('about.ejs');
+});
+
 
 app.listen(port, (req, res) => {
     console.log(`server runging on ${port}...`)
