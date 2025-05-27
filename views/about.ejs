@@ -96,14 +96,6 @@
       margin-top: 2rem;
     }
 
-    footer {
-      background: #333;
-      color: #eee;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
-    }
-
     @media (max-width: 768px) {
       .features {
         flex-direction: column;
@@ -166,7 +158,7 @@
 </section>
 
 <footer>
-  &copy; <%= new Date().getFullYear() %> Pathshala — Empowering Education Digitally
+    <%- include("./include/footer.ejs") %>
 </footer>
 
 </body>

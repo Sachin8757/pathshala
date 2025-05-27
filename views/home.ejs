@@ -120,15 +120,6 @@
       color: #4caf50;
       margin-bottom: 1rem;
     }
-
-    footer {
-      background: #333;
-      color: #eee;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
     @media (max-width: 768px) {
       .hero {
         flex-direction: column-reverse;
@@ -142,24 +133,16 @@
   </style>
 </head>
 <body>
-
-<header>
-  <h1><i class="fas fa-school"></i> Pathshala</h1>
-  <nav>
-    <a href="/add"><i class="fas fa-user-plus"></i> Admission</a>
-    <a href="/students"><i class="fas fa-users"></i> Students</a>
-    <a href="/search"><i class="fas fa-search"></i> Search</a>
-    <a href="/about"><i class="fas fa-info-circle"></i> About</a>
-  </nav>
-</header>
-
+  <%-include("./include/navbar.ejs")%>
 <section class="hero">
   <div class="hero-text">
     <h2>Welcome to Pathshala</h2>
     <p>A smart student management system built for tuition centers and educational institutions. Manage admissions, fee payments, and student records effortlessly.</p>
-    <a href="/add" class="btn"><i class="fas fa-rocket"></i> Get Started</a>
+    <a href="/addmition" class="btn"><i class="fas fa-rocket"></i> Get Started</a>
   </div>
   <img src="https://images.unsplash.com/photo-1588072432836-e10032774350" alt="Students Learning">
+
+
 </section>
 
 <section class="features">
@@ -181,7 +164,7 @@
 </section>
 
 <footer>
-  &copy; <%= new Date().getFullYear() %> Pathshala — Made with ❤️ for Learning
+   <%- include("./include/footer.ejs") %>
 </footer>
 
 </body>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -88,12 +89,14 @@
         font-size: 1.5rem;
       }
 
-      input, button {
+      input,
+      button {
         font-size: 14px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
@@ -106,7 +109,8 @@
       <input type="text" id="student_name" name="student_name" value="<%= student.student_name %>" required />
 
       <label for="join_date">Join Date</label>
-      <input type="date" id="join_date" name="join_date" value="<%= student.join_date.toISOString().split('T')[0] %>" required />
+      <input type="date" id="join_date" name="join_date" value="<%= student.join_date.toISOString().split('T')[0] %>"
+        required />
 
       <label for="fathers_name">Father's Name</label>
       <input type="text" id="fathers_name" name="fathers_name" value="<%= student.fathers_name %>" required />
@@ -114,9 +118,13 @@
       <label for="fee">Fee (₹)</label>
       <input type="number" id="fee" name="fee" value="<%= student.fee %>" required />
 
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Password" required />
+
       <button type="submit">Update Student</button>
     </form>
   </div>
 
 </body>
+
 </html>

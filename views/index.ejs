@@ -1,42 +1,51 @@
-<body>
-    <link rel="stylesheet" href="/stylesheet/index.css">
-    <%-include("./include/navbar.ejs")%>
-    <div class="mainbox">
-        <div class="details">
-            <table>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Father's Name</th>
-                        <th>Join Date</th>
-                        <th>Fee</th>
-                        <th>Click for Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% allstudent.forEach((st, index) => { %>
-                        <tr>
-                            <td><%= index + 1 %></td>
-                            <td><%= st.student_name %></td>
-                            <td><%= st.fathers_name %></td>
-                            <td><%= new Date(st.join_date).toLocaleDateString("en-IN", { day: '2-digit', month: '2-digit', year: 'numeric' }) %></td>
-                            <td><%= st.fee %></td>
-                            <td>
-                                <form action="/details/<%= st._id %>" method="get">
-                                    <button type="submit">View Details</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    
-</body>
-<!-- <footer>
-<%-include("./include/footer.ejs")%>
-</footer> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student List | Pathsala</title>
+  <link rel="stylesheet" href="/stylesheet/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
+</head>
+
+<body>
+  <%- include("./include/navbar.ejs") %>
+
+<div class="mainbox">
+    <div class="details">
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Join Date</th>
+                    <th>Fee</th>
+                    <th>Click for Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% allstudent.forEach((st, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= st.student_name %></td>
+                        <td><%= st.fathers_name %></td>
+                        <td><%= new Date(st.join_date).toLocaleDateString("en-IN", { day: '2-digit', month: '2-digit', year: 'numeric' }) %></td>
+                        <td>₹<%= st.fee %></td>
+                        <td>
+                            <form action="/details/<%= st._id %>" method="get">
+                                <button type="submit"><i class="fas fa-eye"></i> View</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+  <%- include("./include/footer.ejs") %>
+</body>
 </html>

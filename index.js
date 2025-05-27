@@ -26,15 +26,13 @@ app.engine("ejs", ejsMate);
 
 // index route
 app.get("/", async (req, res) => {
+    res.render("home.ejs")
+})
+
+app.get("/pathsala", async (req, res) => {
     const allstudent = await Student.find();
     res.render("index.ejs", { allstudent })
 })
-// app.post("/", (req, res) => {
-//     const { hello } = req.body;
-//     console.log(hello)
-// })
-
-
 
 // addmition
 app.get("/addmition", (req, res) => {
@@ -88,7 +86,7 @@ app.post("/delete/:id", async (req, res) => {
     const { adminPassword } = req.body;
     if (adminPassword === process.env.PASSWORD) {
         const stu = await Student.findByIdAndDelete(id);
-        res.redirect("/")
+        res.redirect("/pathsala")
     } else {
         return res.status(403).send("Incorrect admin password.");
     }
@@ -150,19 +148,25 @@ app.post("/payfee/:id", async (req, res) => {
 
 // GET edit page
 app.get('/edit/:id', async (req, res) => {
-  const student = await Student.findById(req.params.id);
-  res.render('edit.ejs', { student });
+    const student = await Student.findById(req.params.id);
+    res.render('edit.ejs', { student });
 });
 
 // POST update
 app.post("/edit/:id", async (req, res) => {
-  await Student.findByIdAndUpdate(req.params.id, req.body);
-  res.redirect('/details/' + req.params.id);
+    const { password } = req.body;
+    if (password === process.env.PASSWORD) {
+        await Student.findByIdAndUpdate(req.params.id, req.body);
+        res.redirect('/details/' + req.params.id);
+    }else{
+         return res.status(403).send("Incorrect admin password.");
+    }
+
 });
 
 //about route
 app.get('/about', async (req, res) => {
-  res.render('about.ejs');
+    res.render('about.ejs');
 });
 
 
