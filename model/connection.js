@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose.Schema;
-const url =  process.env.DB_URL ;
+const url =  process.env.url ;
 
 main().then(() => {
     console.log("db connected !");
@@ -10,4 +10,3 @@ main().then(() => {
 async function main() {
     await mongoose.connect(url)
 }
-

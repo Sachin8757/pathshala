@@ -1,6 +1,7 @@
-if (process.env.NODE_ENV !== "production") {
-    require('dotenv').config();
-}
+// if (process.env.NODE_ENV !== "production") {
+//     require('dotenv').config();
+// }
+require('dotenv').config();
 const express = require('express')
 const mongoose = require("./model/connection.js")
 const Student = require("./model/student.js")//student schema
