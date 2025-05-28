@@ -1,25 +1,33 @@
-<link rel="stylesheet" href="/stylesheet/navbar.css">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="/stylesheet/navbar.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <body>
   <nav class="navbar">
     <div class="logo"><i class="fas fa-school"></i> Pathsala</div>
-    <form action="/search" method="post">
-    <div class="search-box">
-      <input type="text" placeholder="Search BY Roll_No" name="roll"/>
-      <button><i class="fas fa-search searchbtn"></i></button>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
     </div>
+
+    <form action="/search" method="post" class="search-box">
+      <input type="text" placeholder="Search BY Roll_No" name="roll"  required/>
+      <button type="submit"><i class="fas fa-search searchbtn"></i></button>
     </form>
 
-    <div class="nav-buttons">
+    <div class="nav-buttons" id="nav-buttons">
       <a href="/"><button class="addition-btn"><i class="fas fa-home"></i> Home</button></a>
-      <a href="/pathsala"><button class="addition-btn"><i class="fas fa-users"></i>Students</button></a>
+      <a href="/pathsala"><button class="addition-btn"><i class="fas fa-users"></i> Students</button></a>
       <a href="/addmition"><button class="addition-btn"><i class="fas fa-user-plus"></i> Admission</button></a>
-      <a href="/result"><button class="addition-btn"><i class="fas fa-file-alt"></i>Result</button></a>
+      <a href="/result"><button class="addition-btn"><i class="fas fa-file-alt"></i> Result</button></a>
       <a href="/about"><button class="addition-btn"><i class="fas fa-info-circle"></i> About</button></a>
     </div>
   </nav>
 </body>
-<script>
-  
-</script>
 
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const navButtons = document.getElementById("nav-buttons");
+
+  toggle.addEventListener("click", () => {
+    navButtons.classList.toggle("active");
+  });
+</script>

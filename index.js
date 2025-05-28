@@ -14,8 +14,6 @@ const { error } = require('console');
 const app = express();
 const port = process.env.PORT || 3000;
 
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(methodoverride('_method'));
@@ -157,7 +155,7 @@ app.post("/payfee/:id", async (req, res) => {
 // GET edit page
 app.get('/edit/:id', async (req, res) => {
     const student = await Student.findById(req.params.id);
-    console.log(student)
+  
     res.render('edit.ejs', { student });
 });
 
@@ -181,7 +179,6 @@ app.get('/about', async (req, res) => {
 app.post("/search", async (req, res) => {
     const { roll } = req.body;
     const student = await Student.findOne({ roll_no: roll });
-    console.log(student)
     if (student) {
         res.render("search.ejs", { student })
     } else {
@@ -197,14 +194,11 @@ app.get('/result', async (req, res) => {
 });
 app.post('/result', async (req, res) => {
     const { roll_no } = req.body;
-
     try {
         const student = await Student.findOne({ roll_no }).populate("result");
-
         if (!student) {
             return res.status(400).send("Roll number does not exist");
         }
-        console.log(student)
         res.render("result.ejs", { student });
     } catch (err) {
         console.error(err);
@@ -213,13 +207,14 @@ app.post('/result', async (req, res) => {
 });
 
 
-//submit result route for each student
+// submit result route for each student
+
 app.get("/submit-result",(req,res)=>{
     res.render("submit_result.ejs")
 })
 app.post("/submit-result", async (req, res) => {
-  const { roll_no, math, english, hindi,date } = req.body;
-
+  const { roll_no, math, english, hindi,date,password } = req.body;
+if(password===process.env.PASSWORD){
   try {
     const student = await Student.findOne({ roll_no });
 
@@ -245,6 +240,11 @@ app.post("/submit-result", async (req, res) => {
     console.error(err);
     res.status(500).send("An error occurred while submitting the result.");
   }
+}else{
+    return res.status(403).send("Incorrect admin password.");
+}
+
+
 });
 
 //listing port
