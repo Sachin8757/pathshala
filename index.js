@@ -15,6 +15,9 @@ const { error } = require('console');
 const app = express();
 const port = process.env.PORT || 3000;
 
+//submit result
+const SubmitR=require("./submitresult.js")
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(methodoverride('_method'));
@@ -206,50 +209,44 @@ app.post('/result', async (req, res) => {
         res.status(500).send("Server error");
     }
 });
+app.get("/submit-result", async (req, res) => {
+  const submitted = [];
+  const errors = [];
 
+  for (const result of SubmitR) {
+    try {
+      const student = await Student.findOne({ roll_no: result.roll_no });
 
-// submit result route for each student
+      if (!student) {
+        errors.push({ roll_no: result.roll_no, error: "Student not found" });
+        continue;
+      }
 
-app.get("/submit-result",(req,res)=>{
-    res.render("submit_result.ejs")
-})
-app.post("/submit-result", async (req, res) => {
-  const { roll_no, math, english, hindi,date,password } = req.body;
-if(password===process.env.PASSWORD){
-  try {
-    const student = await Student.findOne({ roll_no });
+      const newResult = new Result({
+        studentId: student._id,
+        Date: result.Date || new Date(), // fallback if Date not provided
+        Math: result.Math,
+        English: result.English,
+        Hindi: result.Hindi
+      });
 
-    if (!student) {
-      return res.status(404).send("Student not found.");
+      const savedResult = await newResult.save();
+
+      student.result.push(savedResult._id);
+      await student.save();
+
+      submitted.push({ roll_no: result.roll_no, student_name: student.student_name });
+    } catch (err) {
+      console.error("Error processing roll_no:", result.roll_no, err);
+      errors.push({ roll_no: result.roll_no, error: "Server error" });
     }
-
-    const newResult = new Result({
-      studentId: student._id,
-      Date:date,
-      Math: math,
-      English: english,
-      Hindi: hindi
-    });
-
-    const savedResult = await newResult.save();
-
-    student.result.push(savedResult._id);
-    await student.save();
-
-    res.redirect("/")
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("An error occurred while submitting the result.");
   }
-}else{
-    return res.status(403).send("Incorrect admin password.");
-    
-}
 
-
+  // Optionally show a success page with details:
+//   res.render("bulkResultStatus.ejs", { submitted, errors });
+res.redirect("/")
 });
 
-//listing port
 app.listen(port, (req, res) => {
     console.log(`server runging on ${port}...`)
 })
