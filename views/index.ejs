@@ -19,9 +19,6 @@
                 <tr>
                     <th>Roll_No</th>
                     <th>Name</th>
-                    <th>Father's Name</th>
-                    <th>Join Date</th>
-                    <th>Fee</th>
                     <th>Click for Details</th>
                 </tr>
             </thead>
@@ -30,9 +27,7 @@
                     <tr>
                         <td><%= st.roll_no %></td>
                         <td><%= st.student_name %></td>
-                        <td><%= st.fathers_name %></td>
-                        <td><%= new Date(st.join_date).toLocaleDateString("en-IN", { day: '2-digit', month: '2-digit', year: 'numeric' }) %></td>
-                        <td>₹<%= st.fee %></td>
+                        
                         <td>
                             <form action="/details/<%= st._id %>" method="get">
                                 <button type="submit"><i class="fas fa-eye"></i> View</button>
