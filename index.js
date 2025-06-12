@@ -1,6 +1,3 @@
-// if (process.env.NODE_ENV !== "production") {
-//     require('dotenv').config();
-// }
 require('dotenv').config();
 const express = require('express')
 const mongoose = require("./model/connection.js")
@@ -29,7 +26,8 @@ app.engine("ejs", ejsMate);
 
 // index route
 app.get("/", async (req, res) => {
-    res.render("home.ejs")
+    res.redirect("/result")
+    // res.render("home.ejs")
 })
 
 app.get("/pathsala", async (req, res) => {
@@ -209,43 +207,44 @@ app.post('/result', async (req, res) => {
         res.status(500).send("Server error");
     }
 });
-app.get("/submit-result", async (req, res) => {
-  const submitted = [];
-  const errors = [];
 
-  for (const result of SubmitR) {
-    try {
-      const student = await Student.findOne({ roll_no: result.roll_no });
+// app.get("/submit-result", async (req, res) => {
+//   const submitted = [];
+//   const errors = [];
 
-      if (!student) {
-        errors.push({ roll_no: result.roll_no, error: "Student not found" });
-        continue;
-      }
+//   for (const result of SubmitR) {
+//     try {
+//       const student = await Student.findOne({ roll_no: result.roll_no });
 
-      const newResult = new Result({
-        studentId: student._id,
-        Date: result.Date || new Date(), // fallback if Date not provided
-        Math: result.Math,
-        English: result.English,
-        Hindi: result.Hindi
-      });
+//       if (!student) {
+//         errors.push({ roll_no: result.roll_no, error: "Student not found" });
+//         continue;
+//       }
 
-      const savedResult = await newResult.save();
+//       const newResult = new Result({
+//         studentId: student._id,
+//         Date: result.Date || new Date(), // fallback if Date not provided
+//         Math: result.Math,
+//         English: result.English,
+//         Hindi: result.Hindi
+//       });
 
-      student.result.push(savedResult._id);
-      await student.save();
+//       const savedResult = await newResult.save();
 
-      submitted.push({ roll_no: result.roll_no, student_name: student.student_name });
-    } catch (err) {
-      console.error("Error processing roll_no:", result.roll_no, err);
-      errors.push({ roll_no: result.roll_no, error: "Server error" });
-    }
-  }
+//       student.result.push(savedResult._id);
+//       await student.save();
 
-  // Optionally show a success page with details:
-//   res.render("bulkResultStatus.ejs", { submitted, errors });
-res.redirect("/")
-});
+//       submitted.push({ roll_no: result.roll_no, student_name: student.student_name });
+//     } catch (err) {
+//       console.error("Error processing roll_no:", result.roll_no, err);
+//       errors.push({ roll_no: result.roll_no, error: "Server error" });
+//     }
+//   }
+
+//   // Optionally show a success page with details:
+// //   res.render("bulkResultStatus.ejs", { submitted, errors });
+// res.redirect("/")
+// });
 
 app.listen(port, (req, res) => {
     console.log(`server runging on ${port}...`)
