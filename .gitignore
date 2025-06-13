@@ -1,2 +1,6 @@
 .env
-submitresult
+submitresult.js
+/views/layout/addmition.ejs
+/views/layout/delete.ejs
+/views/layout/edit.ejs
+/views/layout/fee.ejs

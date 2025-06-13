@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 //submit result
-const SubmitR=require("./submitresult.js")
+const SubmitR = require("./submitresult.js")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
@@ -26,8 +26,8 @@ app.engine("ejs", ejsMate);
 
 // index route
 app.get("/", async (req, res) => {
-    res.redirect("/result")
-    // res.render("home.ejs")
+    // res.redirect("/result")
+    res.render("home.ejs")
 })
 
 app.get("/pathsala", async (req, res) => {
@@ -37,8 +37,13 @@ app.get("/pathsala", async (req, res) => {
 
 // addmition
 app.get("/addmition", (req, res) => {
-    res.render("addmition.ejs")
-})
+    try {
+        res.render("addmition.ejs");
+    } catch (error) {
+        res.status(404).send("Page not found");
+    }
+});
+
 
 app.post("/addmition", async (req, res) => {
     const { roll_no, student_name, join_date, fathers_name, fee, password } = req.body;
@@ -87,7 +92,12 @@ app.get("/details/:id", async (req, res) => {
 app.get("/delete/:id", async (req, res) => {
     const { id } = req.params;
     const student = await Student.findById(id);
-    res.render("delete.ejs", { student })
+
+    try {
+        res.render("delete.ejs", { student })
+    } catch (error) {
+        res.status(404).send("Page not found");
+    }
 })
 app.post("/delete/:id", async (req, res) => {
     const { id } = req.params;
@@ -104,7 +114,12 @@ app.post("/delete/:id", async (req, res) => {
 app.get("/payfee/:id", async (req, res) => {
     const { id } = req.params;
     const stu = await Student.findById(id);
-    res.render("fee.ejs", { stu })
+    try {
+            res.render("fee.ejs", { stu })
+     
+    } catch (error) {
+        res.status(404).send("Page not found");
+    }
 });
 
 app.post("/payfee/:id", async (req, res) => {
@@ -157,8 +172,13 @@ app.post("/payfee/:id", async (req, res) => {
 // GET edit page
 app.get('/edit/:id', async (req, res) => {
     const student = await Student.findById(req.params.id);
-  
-    res.render('edit.ejs', { student });
+
+    try {
+        res.render('edit.ejs', { student });
+
+    } catch (error) {
+        res.status(404).send("Page not found");
+    }
 });
 
 // POST update
