@@ -4,6 +4,3 @@
 /views/delete.ejs
 /views/edit.ejs
 /views/fee.ejs
-
-# Ignore root-level submitresult.js
-/submitresult.js
