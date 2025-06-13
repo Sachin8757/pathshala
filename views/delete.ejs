@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Student</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive meta -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f85032, #e73827);
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #c0392b;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .info {
+            background-color: #fef2f2;
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .info p {
+            margin-bottom: 0.6rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 1rem;
+            transition: border 0.3s;
+        }
+
+        input[type="password"]:focus {
+            border-color: #e74c3c;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #c0392b, #a93226);
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            input, button {
+                font-size: 15px;
+            }
+
+            .info {
+                font-size: 14px;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Delete Student Record</h2>
+
+    <div class="info">
+        <p><strong>Student Name:</strong> <%= student.student_name %></p>
+        <p><strong>Username:</strong> <%= student.username %></p>
+        <p><strong>Father's Name:</strong> <%= student.fathers_name %></p>
+        <p><strong>Fee:</strong> ₹<%= student.fee %></p>
+        <p><strong>Join Date:</strong>
+            <%= new Date(student.join_date).toLocaleDateString("en-IN", { day: '2-digit', month: '2-digit', year: 'numeric' }) %>
+        </p>
+    </div>
+
+    <form action="/delete/<%= student._id %>" method="POST">
+        <label for="adminPassword">Admin Password:</label>
+        <input type="password" id="adminPassword" name="adminPassword" placeholder="Enter admin password" required>
+        <button type="submit">Confirm Delete</button>
+    </form>
+
+    <a class="back-link" href="/details/<%= student._id %>">← Back to Student Details</a>
+</div>
+
+</body>
+</html>

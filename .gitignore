@@ -1,6 +1,9 @@
 .env
-submitresult.js
+# Ignore specific layout EJS files
 /views/layout/addmition.ejs
 /views/layout/delete.ejs
 /views/layout/edit.ejs
 /views/layout/fee.ejs
+
+# Ignore root-level submitresult.js
+/submitresult.js
