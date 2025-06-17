@@ -1,6 +1,3 @@
 .env
 # Ignore specific layout EJS files
-/views/addmition.ejs
-/views/delete.ejs
-/views/edit.ejs
-/views/fee.ejs
+
