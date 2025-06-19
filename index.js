@@ -228,43 +228,43 @@ app.post('/result', async (req, res) => {
     }
 });
 
-// app.get("/submit-result", async (req, res) => {
-//   const submitted = [];
-//   const errors = [];
+ app.get("/submit-result", async (req, res) => {
+   const submitted = [];
+   const errors = [];
 
-//   for (const result of SubmitR) {
-//     try {
-//       const student = await Student.findOne({ roll_no: result.roll_no });
+   for (const result of SubmitR) {
+     try {
+       const student = await Student.findOne({ roll_no: result.roll_no });
 
-//       if (!student) {
-//         errors.push({ roll_no: result.roll_no, error: "Student not found" });
-//         continue;
-//       }
+       if (!student) {
+         errors.push({ roll_no: result.roll_no, error: "Student not found" });
+         continue;
+      }
 
-//       const newResult = new Result({
-//         studentId: student._id,
-//         Date: result.Date || new Date(), // fallback if Date not provided
-//         Math: result.Math,
-//         English: result.English,
-//         Hindi: result.Hindi
-//       });
+       const newResult = new Result({
+         studentId: student._id,
+              Date: result.Date || new Date(), // fallback if Date not provided
+         Math: result.Math,
+         English: result.English,
+         Hindi: result.Hindi
+       });
 
-//       const savedResult = await newResult.save();
+       const savedResult = await newResult.save();
 
-//       student.result.push(savedResult._id);
-//       await student.save();
+       student.result.push(savedResult._id);
+       await student.save();
 
-//       submitted.push({ roll_no: result.roll_no, student_name: student.student_name });
-//     } catch (err) {
-//       console.error("Error processing roll_no:", result.roll_no, err);
-//       errors.push({ roll_no: result.roll_no, error: "Server error" });
-//     }
-//   }
+       submitted.push({ roll_no: result.roll_no, student_name: student.student_name });
+     } catch (err) {
+      console.error("Error processing roll_no:", result.roll_no, err);
+            errors.push({ roll_no: result.roll_no, error: "Server error" });
+     }
+   }
 
-//   // Optionally show a success page with details:
-// //   res.render("bulkResultStatus.ejs", { submitted, errors });
-// res.redirect("/")
-// });
+   //Optionally show a success page with details:
+ // res.render("bulkResultStatus.ejs", { submitted, errors });
+res.redirect("/")
+});
 
 app.listen(port, (req, res) => {
     console.log(`server runging on ${port}...`)
