@@ -226,8 +226,6 @@ app.post('/result', async (req, res) => {
         res.status(500).send("Server error");
     }
 });
-
-<<<<<<< HEAD
 app.get("/submit-result", async (req, res) => {
   const submitted = [];
   const errors = [];
@@ -279,7 +277,6 @@ app.get("/submit-result", async (req, res) => {
   res.redirect("/");
 });
 
-=======
  app.get("/submit-result", async (req, res) => {
    const submitted = [];
    const errors = [];
@@ -317,7 +314,7 @@ app.get("/submit-result", async (req, res) => {
  // res.render("bulkResultStatus.ejs", { submitted, errors });
 res.redirect("/")
 });
->>>>>>> da3eccc90ef881eac212b807c00533814a667761
+
 
 app.listen(port, (req, res) => {
     console.log(`server runging on ${port}...`)
