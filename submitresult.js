@@ -1,11 +1,11 @@
 const results = [
-//   {
-//     roll_no: "101",
-//     Date: "03/05/2025",//mm/dd/yy
-//     Math: "41",
-//     English: "0",
-//     Hindi: "19"
-//   },
+  // {
+  //   roll_no: "101",
+  //   Math: 10,
+  //   English:10,
+  //   Hindi: 10,
+  //   Behaviour:10
+  // }
 
 ];
 module.exports = results;

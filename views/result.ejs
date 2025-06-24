@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Result</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -56,7 +61,8 @@
       overflow: hidden;
     }
 
-    th, td {
+    th,
+    td {
       padding: 12px;
       font-size: 15px;
     }
@@ -91,8 +97,22 @@
     }
 
     .back-btn:hover {
-      background: #ff7878;
+      background: #26878d;
     }
+
+    th[colspan="4"] {
+      font-size: 18px;
+      background-color: #2ae8f2 !important;
+      color: white;
+      text-align: left;
+      padding-left: 15px;
+    }
+
+    .total td:last-child {
+      color: #007bff;
+      font-weight: bold;
+    }
+
 
     @media (max-width: 768px) {
       .result-card {
@@ -103,7 +123,8 @@
         font-size: 22px;
       }
 
-      th, td {
+      th,
+      td {
         font-size: 13px;
         padding: 10px;
       }
@@ -119,45 +140,117 @@
     }
   </style>
 </head>
+
 <body>
 
-<div class="result-card">
-  <h2><i class="fas fa-poll"></i> Student Result</h2>
+  <div class="result-card">
+    <h2><i class="fas fa-poll"></i> Student Result</h2>
 
-  <div class="student-info">
-    <p><strong>Name:</strong> <%= student.student_name %></p>
-    <p><strong>Father's Name:</strong> <%= student.fathers_name %></p>
-    <p><strong>Roll No:</strong> <%= student.roll_no %></p>
-    <p><strong>Join Date:</strong> <%= new Date(student.join_date).toLocaleDateString() %></p>
+    <div class="student-info">
+      <p><strong>Name:</strong>
+        <%= student.student_name %>
+      </p>
+      <p><strong>Father's Name:</strong>
+        <%= student.fathers_name %>
+      </p>
+      <p><strong>Roll No:</strong>
+        <%= student.roll_no %>
+      </p>
+
+    </div>
+    <% if (student.result) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Total Marks</th>
+            <th>Obtained Marks</th>
+            <th>Percentage</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Math</td>
+            <td>50</td>
+            <td>
+              <%= student.result.Math %>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>English</td>
+            <td>50</td>
+            <td>
+              <%= student.result.English %>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Hindi</td>
+            <td>50</td>
+            <td>
+              <%= student.result.Hindi %>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Behaviour</td>
+            <td>50</td>
+            <td>
+              <%= student.result.Behaviour %>
+            </td>
+            <td></td>
+          </tr>
+          <tr class="total">
+            <td>Total</td>
+            <td>200</td>
+            <td>
+              <%= (parseInt(student.result.English) || 0) + (parseInt(student.result.Math) || 0) +
+                (parseInt(student.result.Hindi) || 0) + (parseInt(student.result.Behaviour) || 0) %>
+            </td>
+            <td>
+              <%= ( ((parseInt(student.result.English) || 0) + (parseInt(student.result.Math) || 0) +
+                (parseInt(student.result.Hindi) || 0) + (parseInt(student.result.Behaviour) || 0)) / 200 * 100
+                ).toFixed(2) %>%
+            </td>
+            <tr>
+  <td colspan="4" style="text-align: center; padding-top: 12px;">
+    <% 
+      let division = student.result.Division;
+      let divisionColor = "#dc3545"; // default red for Fail
+
+      if (division === "Topper") divisionColor = "#f1c40f";       // gold
+      else if (division === "First") divisionColor = "#28a745";   // green
+      else if (division === "Second") divisionColor = "#007bff";  // blue
+      else if (division === "Third") divisionColor = "#fd7e14";   // orange;
+    %>
+    <span style="
+      display: inline-block;
+      background-color: <%= divisionColor %>;
+      color: white;
+      padding: 10px 40px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 15px;
+    ">
+      <%= division %>
+    </span>
+  </td>
+</tr>
+
+          </tr>
+
+        </tbody>
+      </table>
+      <% } else { %>
+        <p>No result available.</p>
+        <% } %>
+
+
+          <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
 
-  <% student.result.forEach((res, i) => { %>
-    <table>
-      <thead>
-        <tr><th colspan="3">Result <%= i + 1 %> - <%= new Date(res.Date).toLocaleDateString() %></th></tr>
-        <tr>
-          <th>Subject</th>
-          <th>Total Marks</th>
-          <th>Obtained Marks</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>English</td><td>50</td><td><%= res.English %></td></tr>
-        <tr><td>Math</td><td>50</td><td><%= res.Math %></td></tr>
-        <tr><td>Hindi</td><td>50</td><td><%= res.Hindi %></td></tr>
-        <tr class="total">
-          <td>Total</td>
-          <td>150</td>
-          <td>
-            <%= (parseInt(res.English) || 0) + (parseInt(res.Math) || 0) + (parseInt(res.Hindi) || 0) %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  <% }) %>
-
-  <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
-</div>
-
 </body>
+
 </html>

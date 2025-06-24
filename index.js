@@ -3,7 +3,6 @@ const express = require('express')
 const mongoose = require("./model/connection.js")
 const Student = require("./model/student.js")//student schema
 const Month = require("./model/fee.js");//fee schema
-const Result = require('./model/result.js');//result schema
 var methodoverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const path = require('path');
@@ -228,43 +227,57 @@ app.post('/result', async (req, res) => {
     }
 });
 
-// app.get("/submit-result", async (req, res) => {
-//   const submitted = [];
-//   const errors = [];
+app.get("/submit-result", async (req, res) => {
+  const submitted = [];
+  const errors = [];
 
-//   for (const result of SubmitR) {
-//     try {
-//       const student = await Student.findOne({ roll_no: result.roll_no });
+  for (const result of SubmitR) {
+    try {
+      const student = await Student.findOne({ roll_no: result.roll_no });
 
-//       if (!student) {
-//         errors.push({ roll_no: result.roll_no, error: "Student not found" });
-//         continue;
-//       }
+      if (!student) {
+        errors.push({ roll_no: result.roll_no, error: "Student not found" });
+        continue;
+      }
 
-//       const newResult = new Result({
-//         studentId: student._id,
-//         Date: result.Date || new Date(), // fallback if Date not provided
-//         Math: result.Math,
-//         English: result.English,
-//         Hindi: result.Hindi
-//       });
+      // Parse subject marks (safely convert to integers)
+      const math = parseInt(result.Math) || 0;
+      const english = parseInt(result.English) || 0;
+      const hindi = parseInt(result.Hindi) || 0;
+      const behaviour = parseInt(result.Behaviour) || 0;
 
-//       const savedResult = await newResult.save();
+      const totalMarks = math + english + hindi + behaviour;
+      const percentage = (totalMarks / 200) * 100;
 
-//       student.result.push(savedResult._id);
-//       await student.save();
+      // Determine division
+      let division = "Fail";
+      if (percentage >= 95) division = "Topper";
+      else if (percentage >= 80) division = "First";
+      else if (percentage >= 70) division = "Second";
+      else if (percentage >= 60) division = "Third";
 
-//       submitted.push({ roll_no: result.roll_no, student_name: student.student_name });
-//     } catch (err) {
-//       console.error("Error processing roll_no:", result.roll_no, err);
-//       errors.push({ roll_no: result.roll_no, error: "Server error" });
-//     }
-//   }
+      // Save result to student
+      student.result = {
+        roll_no: result.roll_no,
+        Division: division,
+        Math: math,
+        English: english,
+        Hindi: hindi,
+        Behaviour: behaviour
+      };
 
-//   // Optionally show a success page with details:
-// //   res.render("bulkResultStatus.ejs", { submitted, errors });
-// res.redirect("/")
-// });
+      await student.save();
+
+      submitted.push({ roll_no: result.roll_no, student_name: student.student_name });
+    } catch (err) {
+      console.error("Error processing roll_no:", result.roll_no, err);
+      errors.push({ roll_no: result.roll_no, error: "Server error" });
+    }
+  }
+
+  res.redirect("/");
+});
+
 
 app.listen(port, (req, res) => {
     console.log(`server runging on ${port}...`)

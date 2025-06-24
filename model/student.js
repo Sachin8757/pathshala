@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const result = require('./result');
 const Schema = mongoose.Schema;
 
 // Student Schema
@@ -17,7 +16,15 @@ const studentSchema = new Schema({
 
     // Array of references to Month documents
     months: [{ type: Schema.Types.ObjectId, ref: 'Month' }],
-    result: [{ type: Schema.Types.ObjectId, ref: 'Result' }]
+    //result section
+    result:{
+    roll_no:Number,
+    Division:String,
+    Math: Number,
+    English:  Number,
+    Hindi:Number,
+    Behaviour:Number
+    }
 });
 
 module.exports = mongoose.model("Student", studentSchema);
