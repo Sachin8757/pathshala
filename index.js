@@ -227,6 +227,7 @@ app.post('/result', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 app.get("/submit-result", async (req, res) => {
   const submitted = [];
   const errors = [];
@@ -278,6 +279,45 @@ app.get("/submit-result", async (req, res) => {
   res.redirect("/");
 });
 
+=======
+ app.get("/submit-result", async (req, res) => {
+   const submitted = [];
+   const errors = [];
+
+   for (const result of SubmitR) {
+     try {
+       const student = await Student.findOne({ roll_no: result.roll_no });
+
+       if (!student) {
+         errors.push({ roll_no: result.roll_no, error: "Student not found" });
+         continue;
+      }
+
+       const newResult = new Result({
+         studentId: student._id,
+              Date: result.Date || new Date(), // fallback if Date not provided
+         Math: result.Math,
+         English: result.English,
+         Hindi: result.Hindi
+       });
+
+       const savedResult = await newResult.save();
+
+       student.result.push(savedResult._id);
+       await student.save();
+
+       submitted.push({ roll_no: result.roll_no, student_name: student.student_name });
+     } catch (err) {
+      console.error("Error processing roll_no:", result.roll_no, err);
+            errors.push({ roll_no: result.roll_no, error: "Server error" });
+     }
+   }
+
+   //Optionally show a success page with details:
+ // res.render("bulkResultStatus.ejs", { submitted, errors });
+res.redirect("/")
+});
+>>>>>>> da3eccc90ef881eac212b807c00533814a667761
 
 app.listen(port, (req, res) => {
     console.log(`server runging on ${port}...`)
