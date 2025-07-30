@@ -19,6 +19,7 @@
                 <tr>
                     <th>Roll_No</th>
                     <th>Name</th>
+                    <th>Fee Date</th>
                     <th>Click for Details</th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                     <tr>
                         <td><%= st.roll_no %></td>
                         <td><%= st.student_name %></td>
+                        <td><%= st.join_date ? st.join_date.toISOString().slice(0,10) : '' %></td>
                         
                         <td>
                             <form action="/details/<%= st._id %>" method="get">

@@ -13,8 +13,6 @@
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
-
-/* Table styles */
 table {
     width: 100%;
     border-collapse: separate;
@@ -86,5 +84,9 @@ button:hover {
     button {
         padding: 4px 8px;
         font-size: 12px;
+    }
+     table {
+        min-width: 320px;
+        width: 100%;
     }
 }

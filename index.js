@@ -30,7 +30,7 @@ app.get("/", async (req, res) => {
 })
 
 app.get("/pathsala", async (req, res) => {
-    const allstudent = await Student.find();
+    const allstudent = await Student.find().sort({ roll_no: 1 }); // Ascending order
     res.render("index.ejs", { allstudent })
 })
 
