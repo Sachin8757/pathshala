@@ -9,7 +9,7 @@ const path = require('path');
 const { defaultMaxListeners } = require('events');
 const { error } = require('console');
 const app = express();
-const Question = require("./model/Question.js"); // Your Mongoose model
+const Question = require("./model/question.js"); // Your Mongoose model
 const port = process.env.PORT || 3000;
 
 //submit result
