@@ -7,10 +7,12 @@ body {
   background: #f8f9fa;
 }
 
+/* Navbar Base */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* ✅ Allows wrapping for search box on small screens */
   padding: 12px 20px;
   background: #1a1a2e;
   color: white;
@@ -21,6 +23,7 @@ body {
   transition: background 0.3s ease-in-out;
 }
 
+/* Logo */
 .navbar .logo {
   font-size: 1.6rem;
   font-weight: bold;
@@ -36,19 +39,25 @@ body {
   color: #ffd700;
 }
 
+/* Search Box */
 .search-box {
   display: flex;
   gap: 8px;
   align-items: center;
+  background: white;
+  border-radius: 20px;
+  padding: 4px 8px;
+  margin-top: 8px;
 }
 
 .search-box input {
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 20px;
   border: none;
   outline: none;
   font-size: 0.9rem;
-  transition: box-shadow 0.3s ease-in-out;
+  flex: 1;
+  min-width: 120px;
 }
 
 .search-box input:focus {
@@ -69,10 +78,12 @@ body {
   background: #ffc107;
 }
 
+/* Navigation Buttons */
 .nav-buttons {
   display: flex;
   gap: 12px;
-  transition: all 0.4s ease-in-out;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-buttons a {
@@ -97,10 +108,10 @@ body {
   box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
 }
 
-/* Mobile Menu */
+/* Menu Toggle */
 .menu-toggle {
   display: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
 }
@@ -109,41 +120,55 @@ body {
   transform: rotate(90deg);
 }
 
+/* Mobile View */
 @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* ✅ Stacks logo, search, menu on mobile */
+    align-items: flex-start;
+  }
+
+  .search-box {
+    width: 100%;
+    margin-top: 10px;
+  }
+
   .nav-buttons {
-    display: none;
     flex-direction: column;
-    background: #0f0f1e;
     position: absolute;
-    top: 60px;
-    right: 10px;
+    top: 100%;
+    right: 15px;
+    background: #0f0f1e;
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    max-height: 0;
+    overflow: hidden;
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-10px);
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    width: 80%;
   }
 
   .nav-buttons.active {
-    display: flex;
+    max-height: 400px;
     opacity: 1;
     transform: translateY(0);
-    animation: fadeSlide 0.3s ease forwards;
+  }
+
+  .nav-buttons a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .addition-btn {
+    width: 100%;
+    margin: 5px 0;
+    border-radius: 10px;
   }
 
   .menu-toggle {
     display: block;
-  }
-}
-
-/* Keyframe animation for menu appearing */
-@keyframes fadeSlide {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+    align-self: flex-end;
+    margin-top: 10px;
   }
 }
