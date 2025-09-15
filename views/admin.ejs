@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f6fa;
+            margin: 0;
+            padding: 0;
+        }
+        .admin-nav {
+            background: #222d32;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .admin-nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 24px;
+            display: block;
+            transition: background 0.2s, color 0.2s;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        .admin-nav a:hover, .admin-nav a:focus {
+            background: #1a2226;
+            color: #ffd700;
+        }
+        .admin-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 32px 24px;
+        }
+        .admin-title {
+            text-align: center;
+            color: #222d32;
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 700px) {
+            .admin-container {
+                padding: 16px 8px;
+            }
+            .admin-title {
+                font-size: 1.3rem;
+            }
+            .admin-nav a {
+                padding: 12px 10px;
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .admin-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .admin-nav a {
+                border-bottom: 1px solid #333;
+                padding: 14px 8px;
+            }
+            .admin-container {
+                margin: 16px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="admin-nav">
+        <a href="/">Home</a>
+        <a href="/pathsala">Show Student details</a>
+        <a href="/submit-result">submit result</a>
+        <a href="/online">Submit Question</a>
+        <a href="/delete-questions">Delete Question</a>
+    </nav>
+    <div class="admin-container">
+        <div class="admin-title">Admin Dashboard</div>
+        <p>Welcome to the admin panel. Use the navigation above to manage the application.</p>
+    </div>
+</body>
+</html>

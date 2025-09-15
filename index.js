@@ -31,6 +31,14 @@ app.get("/", async (req, res) => {
     // res.redirect("/result")
     res.render("home.ejs")
 })
+// adminq route
+app.get("/admin", async (req, res) => {
+    try {
+        res.render("admin.ejs");
+    } catch (error) {
+        res.status(404).send("Page not found");
+    } 
+});
 
 app.get("/pathsala", async (req, res) => {
     const allstudent = await Student.find().sort({ roll_no: 1 }); // Ascending order
@@ -365,9 +373,20 @@ app.post("/submit-test", async (req, res) => {
     res.status(500).send("An error occurred while submitting the test.");
   }
 });
+//delete question route (for testing purposes)
+app.get("/delete-questions", async (req, res) => {
+    try {
+        await Question.deleteMany({});
+        console.log("✅ All questions deleted successfully!");
+        res.redirect("/");
+    } catch (error) {
+        console.error("❌ Error deleting questions:", error);
+        res.status(500).send("Error deleting questions");
+    }
+});
 
 
-
+//server
 app.listen(port, (req, res) => {
     console.log(`server runging on ${port}...`)
 })
