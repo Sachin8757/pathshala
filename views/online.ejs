@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Test</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #74ebd5, #9face6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.test-container {
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.timer-box {
+  display: flex;
+  justify-content: flex-end;
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  font-weight: 600;
+  color: #e74c3c;
+  background: #ffeaea;
+  padding: 8px 16px;
+  border-radius: 12px;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.question {
+  background: #f9f9f9;
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+  padding: 20px;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.question h2 {
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: clamp(1rem, 3.5vw, 1.1rem);
+  color: #333;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-btn {
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background: #ffffff;
+  font-size: clamp(0.95rem, 3vw, 1rem);
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.option-btn:hover {
+  background: #eef5ff;
+  border-color: #4a90e2;
+}
+
+.option-btn.selected {
+  background: #4a90e2;
+  color: white;
+  border-color: #4a90e2;
+  box-shadow: 0px 4px 10px rgba(74, 144, 226, 0.3);
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.nav-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+
+.prev-btn {
+  background: #ecf0f1;
+  color: #333;
+}
+
+.prev-btn:hover {
+  background: #d5dbdb;
+}
+
+.next-btn {
+  background: #3498db;
+  color: white;
+}
+
+.next-btn:hover {
+  background: #2c80b4;
+}
+
+.submit-btn {
+  background: #27ae60;
+  color: white;
+  width: 100%;
+  padding: 14px;
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.submit-btn:hover {
+  background: #1e874b;
+}
+
+/* Overlay */
+#userInfoOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#userInfoOverlay .overlay-content {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+  animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#userInfoOverlay h2 {
+  margin-bottom: 15px;
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
+  font-weight: bold;
+}
+
+#userInfoOverlay input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: clamp(1rem, 4vw, 1.1rem);
+}
+
+#userInfoOverlay button {
+  padding: 14px;
+  border-radius: 10px;
+  background: #4a90e2;
+  color: white;
+  font-weight: bold;
+  font-size: clamp(1rem, 4vw, 1.1rem);
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+
+#userInfoOverlay button:hover {
+  background: #357ab7;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .test-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .test-container {
+    padding: 15px;
+    border-radius: 15px;
+  }
+  .timer-box {
+    font-size: 0.95rem;
+    padding: 6px 10px;
+  }
+  #userInfoOverlay .overlay-content {
+    max-width: 95%;
+    border-radius: 12px;
+    padding: 20px;
+  }
+}
+
+</style>
+
+</head>
+<body>
+  <!-- Overlay for Roll No & Name -->
+  <div id="userInfoOverlay">
+    <div class="overlay-content">
+      <h2>Enter Your Details</h2>
+      <input type="text" id="rollNo" placeholder="Roll Number">
+      <input type="text" id="userName" placeholder="Name">
+      <button onclick="startTest()">Start Test</button>
+    </div>
+  </div>
+
+  <div class="test-container">
+    <h1>Online Test</h1>
+    <div class="timer-box">Time Left: <span id="timer"></span></div>
+
+    <form id="testForm" action="/submit-test" method="POST" onsubmit="return calculateScore()">
+      <!-- Hidden inputs -->
+      <input type="hidden" name="rollNo" id="formRollNo">
+      <input type="hidden" name="userName" id="formUserName">
+      <input type="hidden" name="totalQuestions" id="totalQuestions">
+      <input type="hidden" name="correctAnswers" id="correctAnswers">
+
+      <div id="questionContainer">
+        <% questions.forEach((q, index) => { %>
+          <div class="question hidden" data-index="<%= index %>">
+            <h2><%= index + 1 %>. <%= q.text %></h2>
+            <div class="options">
+              <% q.options.forEach((opt) => { %>
+                <button type="button" class="option-btn"
+                  onclick="selectOption(<%= index %>, '<%= opt %>', this)">
+                  <%= opt %>
+                </button>
+              <% }) %>
+            </div>
+            <input type="hidden" name="answer<%= index %>" id="answer<%= index %>">
+            <input type="hidden" id="correct<%= index %>" value="<%= q.correctAnswer %>">
+          </div>
+        <% }) %>
+      </div>
+
+      <div class="navigation">
+        <button type="button" id="prevBtn" onclick="prevQuestion()" class="nav-btn prev-btn" disabled>Previous</button>
+        <button type="button" id="nextBtn" onclick="nextQuestion()" class="nav-btn next-btn">Next</button>
+      </div>
+
+      <button type="submit" class="submit-btn hidden" id="submitBtn">Submit Test</button>
+    </form>
+  </div>
+
+  <script>
+    let currentQuestion = 0;
+    const questions = document.querySelectorAll(".question");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function showQuestion(index) {
+      questions.forEach((q, i) => q.classList.toggle("hidden", i !== index));
+      prevBtn.disabled = index === 0;
+      if (index === questions.length - 1) {
+        nextBtn.classList.add("hidden");
+        submitBtn.classList.remove("hidden");
+      } else {
+        nextBtn.classList.remove("hidden");
+        submitBtn.classList.add("hidden");
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+      }
+    }
+
+    function selectOption(qIndex, value, btn) {
+      document.getElementById("answer" + qIndex).value = value;
+      const buttons = questions[qIndex].querySelectorAll(".option-btn");
+      buttons.forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+    }
+
+    function startTest() {
+      const rollNo = document.getElementById("rollNo").value.trim();
+      const name = document.getElementById("userName").value.trim();
+      if (!rollNo || !name) {
+        alert("Please enter both Roll Number and Name");
+        return;
+      }
+      document.getElementById("formRollNo").value = rollNo;
+      document.getElementById("formUserName").value = name;
+      document.getElementById("userInfoOverlay").style.display = "none";
+      showQuestion(currentQuestion);
+      startTimer();
+    }
+
+    // Calculate Score
+    function calculateScore() {
+      let totalQuestions = questions.length;
+      let correct = 0;
+      questions.forEach((q, index) => {
+        let selected = document.getElementById("answer" + index).value;
+        let correctAnswer = document.getElementById("correct" + index).value;
+        if (selected === correctAnswer) correct++;
+      });
+      document.getElementById("totalQuestions").value = totalQuestions;
+      document.getElementById("correctAnswers").value = correct;
+      return true;
+    }
+
+    // Timer
+    let timeLeft = <%= duration %>;
+    const timerEl = document.getElementById("timer");
+    function startTimer() {
+      function updateTimer() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        timerEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        if (timeLeft <= 0) {
+          document.getElementById("testForm").submit();
+        } else {
+          timeLeft--;
+          setTimeout(updateTimer, 1000);
+        }
+      }
+      updateTimer();
+    }
+  </script>
+</body>
+</html>

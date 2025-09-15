@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Test Result</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .result-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .result-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      color: #185a9d;
+      margin-bottom: 1rem;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .student-info { margin-bottom: 20px; text-align: left; }
+    .student-info p {
+      font-size: 16px;
+      font-weight: 500;
+      color: #444;
+      margin: 8px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+    th, td {
+      padding: 14px;
+      font-size: 15px;
+      text-align: center;
+    }
+    th {
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      color: white;
+      font-weight: 600;
+    }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    tr:nth-child(odd) { background-color: #ffffff; }
+
+    .status-pass { color: green; font-weight: bold; }
+    .status-fail { color: red; font-weight: bold; }
+
+    .back-btn {
+      margin-top: 20px;
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .back-btn:hover {
+      background: linear-gradient(to right, #185a9d, #43cea2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .result-card { padding: 20px; }
+      h2 { font-size: 22px; }
+      th, td { font-size: 14px; padding: 10px; }
+      .student-info p { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="result-card">
+    <h2><i class="fas fa-poll"></i> Online Test Result</h2>
+
+    <div class="student-info">
+      <p><strong>Name:</strong> <%= student.student_name %></p>
+      <p><strong>Roll No:</strong> <%= student.roll_no %></p>
+      <% if (student.online_test && student.online_test.exam_date) { %>
+        <p><strong>Date:</strong> <%= student.online_test.exam_date.toDateString() %></p>
+      <% } %>
+    </div>
+
+   <% if (student.online_test && student.online_test.marks !== undefined) { 
+     const percentage = (student.online_test.marks / student.online_test.total_marks) * 100;
+     let status;
+
+     if (percentage >= 80 && percentage < 90) {
+       status = "1st Division";
+     } else if (percentage >= 60 && percentage < 80) {
+       status = "Pass";
+     } else if (percentage >= 50 && percentage < 60) {
+       status = "2nd Division";
+     } else if (percentage >= 90) {
+       status = "Distinction";
+     } else {
+       status = "Fail";
+     }
+%>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Total Marks</th>
+            <th>Obtained Marks</th>
+            <th>Percentage</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= student.online_test.total_marks %></td>
+            <td><%= student.online_test.marks %></td>
+            <td><%= percentage.toFixed(2) %>%</td>
+            <td class="<%= status === 'Pass' ? 'status-pass' : 'status-fail' %>">
+              <%= status %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No result available.</p>
+    <% } %>
+
+    <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
+</body>
+</html>

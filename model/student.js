@@ -1,3 +1,4 @@
+const e = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -24,6 +25,11 @@ const studentSchema = new Schema({
     English:  Number,
     Hindi:Number,
     Behaviour:Number
+    },
+    online_test:{
+      total_marks:Number,
+      marks:Number,
+      exam_date:Date
     }
 });
 

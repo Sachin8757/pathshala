@@ -9,128 +9,143 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a2e0f1f0c3.js" crossorigin="anonymous"></script>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #f8f9fa, #e0f7fa);
-      color: #333;
-    }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #e0f7fa);
+    color: #333;
+  }
 
-    header {
-      background: linear-gradient(to right, #43cea2, #185a9d);
-      padding: 1rem 2rem;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  /* Navbar / Header */
+  header {
+    background: linear-gradient(to right, #43cea2, #185a9d);
+    padding: 1rem 2rem;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
 
-    header h1 {
-      font-size: 1.8rem;
-    }
+  header h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
 
-    nav a {
-      margin: 0 1rem;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
+  nav a {
+    margin: 0 1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s, transform 0.2s;
+  }
 
-    nav a:hover {
-      color: #ffeb3b;
-    }
+  nav a:hover {
+    color: #ffeb3b;
+    transform: translateY(-2px);
+  }
 
+  /* Hero Section */
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+  }
+
+  .hero img {
+    width: 100%;
+    max-width: 500px;
+    margin: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .hero-text {
+    max-width: 500px;
+    margin: 1rem;
+  }
+
+  .hero-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #185a9d;
+  }
+
+  .hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #555;
+  }
+
+  .btn {
+    display: inline-block;
+    background: linear-gradient(to right, #43cea2, #185a9d);
+    padding: 12px 24px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn:hover {
+    background: linear-gradient(to right, #185a9d, #43cea2);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Features Section */
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 3rem 1rem;
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s ease;
+    border-top: 5px solid #43cea2;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .feature-card i {
+    font-size: 2rem;
+    color: #43cea2;
+    margin-bottom: 1rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
     .hero {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      padding: 3rem 1rem;
-    }
-
-    .hero img {
-      width: 100%;
-      max-width: 500px;
-      margin: 1rem;
-      border-radius: 15px;
-    }
-
-    .hero-text {
-      max-width: 500px;
-      margin: 1rem;
+      flex-direction: column-reverse;
+      text-align: center;
     }
 
     .hero-text h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      font-size: 1.6rem;
     }
+  }
+</style>
 
-    .hero-text p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn {
-      display: inline-block;
-      background: linear-gradient(to right, #36d1dc, #5b86e5);
-      padding: 12px 24px;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    .btn:hover {
-      background: linear-gradient(to right, #5b86e5, #36d1dc);
-      transform: translateY(-2px);
-    }
-
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 3rem 1rem;
-      gap: 2rem;
-    }
-
-    .feature-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      width: 250px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .feature-card i {
-      font-size: 2rem;
-      color: #4caf50;
-      margin-bottom: 1rem;
-    }
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column-reverse;
-        text-align: center;
-      }
-
-      .hero-text h2 {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
 </head>
 <body>
   <%-include("./include/navbar.ejs")%>
@@ -138,7 +153,7 @@
   <div class="hero-text">
     <h2>Welcome to Pathshala</h2>
     <p>A smart student management system built for tuition centers and educational institutions. Manage admissions, fee payments, and student records effortlessly.</p>
-    <a href="/addmition" class="btn"><i class="fas fa-rocket"></i> Get Started</a>
+    <a href="/test" class="btn"><i class="fas fa-rocket"></i> Get Test</a>
   </div>
   <img src="https://images.unsplash.com/photo-1588072432836-e10032774350" alt="Students Learning">
 

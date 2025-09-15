@@ -1,81 +1,102 @@
+/* Make sure footer always stays at bottom */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* This pushes footer down if content is small */
+}
+
+/* Your existing footer styles */
 .footer {
-  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  background: #1a1a2e; /* same as navbar */
   color: white;
-  padding: 30px 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin-top: 40px;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+  font-family: "Poppins", sans-serif;
+  margin-top: auto; /* Key to make footer stick at bottom */
 }
 
 .footer-container {
-  max-width: 1200px;
-  margin: auto;
-  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
 .footer-logo {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: bold;
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 }
 
-.footer-logo i {
-  margin-right: 8px;
+.footer-logo:hover {
+  transform: scale(1.05);
+  color: #ffd700;
 }
 
 .footer-links {
-  margin: 15px 0;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .footer-links a {
-  margin: 0 15px;
   color: white;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
+  font-size: 0.95rem;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .footer-links a:hover {
-  color: #222;
+  color: #ffd700;
+  transform: translateY(-2px);
 }
 
 .footer-social {
-  margin: 15px 0;
+  display: flex;
+  gap: 15px;
 }
 
 .footer-social a {
   color: white;
-  margin: 0 10px;
-  font-size: 20px;
-  transition: transform 0.3s, color 0.3s;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .footer-social a:hover {
-  color: #222;
+  color: #ffd700;
   transform: scale(1.2);
 }
 
 .footer-copy {
-  margin-top: 20px;
-  font-size: 14px;
-  opacity: 0.8;
+  font-size: 0.85rem;
+  color: #d1d1d1;
+  margin-top: 5px;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-  .footer-links a, .footer-social a {
-    margin: 10px;
-    display: inline-block;
+/* Responsive footer for smaller devices */
+@media (max-width: 768px) {
+  .footer-container {
+    text-align: center;
   }
 
-  .footer-logo {
-    font-size: 1.5rem;
+  .footer-links {
+    justify-content: center;
   }
 
-  .footer-social a {
-    font-size: 18px;
-  }
-
-  .footer-copy {
-    font-size: 13px;
+  .footer-social {
+    justify-content: center;
   }
 }

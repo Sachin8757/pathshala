@@ -8,23 +8,28 @@
 
 .details {
     overflow-x: auto;
-    background: #ffffff;
+    background: #22223b; /* darker background to match navbar/footer */
     border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    padding: 10px;
 }
+
+/* Table styles */
 table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     min-width: 700px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #2d2d4a;
     border-radius: 10px;
     overflow: hidden;
+    background-color: #1a1a2e; /* matches navbar */
+    color: white;
 }
 
 thead tr {
-    background-color: #007bff;
-    color: white;
+    background-color: #ffd700; /* gold header */
+    color: black;
     text-align: left;
     font-weight: bold;
 }
@@ -35,28 +40,36 @@ thead th {
 
 tbody td {
     padding: 14px 16px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #2d2d4a;
 }
 
-/* Alternate row color */
+/* Alternate row color (slightly lighter dark tone) */
 tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #2a2a45;
+}
+
+/* Hover effect on rows */
+tbody tr:hover {
+    background-color: #33334d;
+    transition: background 0.3s ease-in-out;
 }
 
 /* Button styling */
 button {
-    background-color: #17a2b8;
-    color: white;
+    background-color: #ffd700;
+    color: black;
     padding: 6px 12px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
-    transition: background 0.3s;
+    transition: all 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: #138496;
+    background-color: #e6c200;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(255, 215, 0, 0.3);
 }
 
 /* Responsive tweaks */
@@ -84,7 +97,8 @@ button:hover {
         padding: 4px 8px;
         font-size: 12px;
     }
-     table {
+
+    table {
         min-width: 320px;
         width: 100%;
     }

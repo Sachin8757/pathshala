@@ -9,119 +9,134 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a2e0f1f0c3.js" crossorigin="anonymous"></script>
 
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #1a1a2e; /* Match navbar/footer */
+    color: #ddd;
+  }
 
-    header {
-      background: linear-gradient(to right, #43cea2, #185a9d);
-      padding: 1rem 2rem;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
+  header {
+    background: #1a1a2e;
+    padding: 1rem 2rem;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+    color: #ffd700; /* Gold title */
+  }
+
+  nav a {
+    color: #fff;
+    margin: 0 1rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+  }
+
+  nav a:hover {
+    color: #ffd700;
+  }
+
+  .about-section {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #22223b; /* Dark card */
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  }
+
+  .about-section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #ffd700; /* Gold heading */
+  }
+
+  .about-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    color: #e0e0e0;
+  }
+
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 2rem;
+  }
+
+  .feature {
+    width: 250px;
+    padding: 1.5rem;
+    text-align: center;
+    background: #2a2a45;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .feature:hover {
+    transform: translateY(-5px);
+    background: #30304f;
+  }
+
+  .feature i {
+    font-size: 2.5rem;
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+  }
+
+  .about-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .features {
+      flex-direction: column;
       align-items: center;
     }
 
-    header h1 {
-      font-size: 1.8rem;
-    }
-
-    nav a {
-      color: #fff;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      color: #ffeb3b;
+    .feature {
+      width: 80%;
+      margin-bottom: 1.5rem;
     }
 
     .about-section {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      margin: 1rem;
+      padding: 1rem;
     }
 
-    .about-section h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-      font-size: 2rem;
-      color: #185a9d;
+    header {
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .about-section p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-      text-align: justify;
+    nav {
+      margin-top: 0.5rem;
     }
+  }
+</style>
 
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      margin-top: 2rem;
-    }
-
-    .feature {
-      width: 250px;
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .feature i {
-      font-size: 2.5rem;
-      color: #4caf50;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      color: #185a9d;
-    }
-
-    .about-image {
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 2rem;
-    }
-
-    @media (max-width: 768px) {
-      .features {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .feature {
-        width: 80%;
-        margin-bottom: 1.5rem;
-      }
-
-      .about-section {
-        margin: 1rem;
-        padding: 1rem;
-      }
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        margin-top: 0.5rem;
-      }
-    }
-  </style>
 </head>
 <body>
       <%-include("./include/navbar.ejs")%>
