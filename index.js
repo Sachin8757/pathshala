@@ -11,7 +11,7 @@ const { error } = require('console');
 const app = express();
 const Question = require("./model/question.js"); // Your Mongoose model
 const port = process.env.PORT || 3000;
-
+// const exam=require("./routes/exam.js")
 //submit result
 const SubmitR = require("./submitresult.js")
 //
@@ -37,7 +37,7 @@ app.get("/admin", async (req, res) => {
         res.render("admin.ejs");
     } catch (error) {
         res.status(404).send("Page not found");
-    } 
+    }
 });
 
 app.get("/pathsala", async (req, res) => {
@@ -329,49 +329,41 @@ app.get("/test", async (req, res) => {
 });
 
 app.post("/submit-test", async (req, res) => {
-  try {
-    const { rollNo, userName, totalQuestions, correctAnswers } = req.body;
+    try {
+        const { rollNo, userName, totalQuestions, correctAnswers } = req.body;
+        
+        // 2️⃣ Find student
+        const student = await Student.findOne({ roll_no: rollNo });
+        if (!student) {
+            return res.status(400).send("Roll number does not exist.");
+        }
 
-    // 1️⃣ Validate required fields
-    if (!rollNo || !userName) {
-      return res.status(400).send("Roll number and name are required.");
+
+        // 4️⃣ Check if already submitted
+        const examDate = new Date(student.online_test.exam_date).getDate();
+        const currentDate = new Date().getDate() // Normalize to midnight
+
+        if (examDate === currentDate) {
+            return res.status(400).send("You have already submitted the test.");
+        }
+
+
+        //  Save test result
+        student.online_test = {
+            total_marks: totalQuestions,
+            marks: correctAnswers,
+            exam_date: new Date()
+        };
+
+        await student.save();
+
+        // 6️⃣ Redirect or render success page
+        res.redirect("/");
+
+    } catch (err) {
+        console.error("Error submitting test:", err);
+        res.status(500).send("An error occurred while submitting the test.");
     }
-
-    // 2️⃣ Find student
-    const student = await Student.findOne({ roll_no: rollNo });
-    if (!student) {
-      return res.status(400).send("Roll number does not exist.");
-    }
-
-    // 3️⃣ Time validation (Only allow between 6:00 AM - 6:00 PM)
-    const currentHour = new Date().getHours(); // ✅ Correct way
-    if (currentHour < 6 || currentHour >= 18) {
-      return res
-        .status(400)
-        .send("Online test can only be submitted between 6:00 AM and 6:00 PM.");
-    }
-
-    // 4️⃣ Check if already submitted
-    if (student.online_test && student.online_test.exam_date) {
-      return res.status(400).send("You have already submitted the test.");
-    }
-
-    //  Save test result
-    student.online_test = {
-        total_marks:totalQuestions,
-        marks: correctAnswers,
-        exam_date: new Date()
-    };
-
-    await student.save();
-
-    // 6️⃣ Redirect or render success page
-    res.redirect("/");
-
-  } catch (err) {
-    console.error("Error submitting test:", err);
-    res.status(500).send("An error occurred while submitting the test.");
-  }
 });
 //delete question route (for testing purposes)
 app.get("/delete-questions", async (req, res) => {
