@@ -320,13 +320,17 @@ app.get("/online", async (req, res) => {
 
 //online test route
 app.get("/test", async (req, res) => {
-    try {
-        const questions = await Question.find(); // get all questions
-        res.render("online.ejs", { questions, duration: 1200 }); // 1200 seconds (20 min)
-    } catch (err) {
-        res.status(500).send("Error loading test");
-    }
+  try {
+    const questions = await Question.find(); // get all questions
+    const duration = questions.length * 60;  // 1 min per question (in seconds)
+
+    res.render("online.ejs", { questions, duration });
+  } catch (err) {
+    console.error("Error loading test:", err);
+    res.status(500).send("Error loading test");
+  }
 });
+
 
 app.post("/submit-test", async (req, res) => {
     try {
