@@ -1,168 +1,160 @@
 const sampleQuestions = [
-  // ===== English (10 Questions) =====
-  {
-    text: "Write a short paragraph on 'My Favourite Festival'.",
-    options: [
-      "Diwali is my favourite festival because we light diyas and burn crackers.",
-      "Holi is my favourite festival because we play with colors.",
-      "Christmas is my favourite festival because we decorate a tree.",
-      "Eid is my favourite festival because we prepare special food."
-    ],
-    correctAnswer: "Diwali is my favourite festival because we light diyas and burn crackers."
-  },
-  {
-    text: "Fill in the blank: I ____ (go) to school every morning.",
-    options: ["go", "went", "gone", "going"],
-    correctAnswer: "go"
-  },
-  {
-    text: "Identify the part of speech of the word 'singing' in the sentence: She is singing beautifully.",
-    options: ["Noun", "Verb", "Adjective", "Adverb"],
-    correctAnswer: "Verb"
-  },
-  {
-    text: "Choose the correct plural form of 'Box'.",
-    options: ["Boxs", "Boxes", "Boxies", "Boxen"],
-    correctAnswer: "Boxes"
-  },
-  {
-    text: "Change into negative: He is playing cricket.",
-    options: ["He playing not cricket.", "He not is playing cricket.", "He is not playing cricket.", "He is no playing cricket."],
-    correctAnswer: "He is not playing cricket."
-  },
-  {
-    text: "Rearrange to form a meaningful sentence: park / children / the / are / playing / in",
-    options: ["The park is playing in children.", "Children are playing in the park.", "In the park are children playing.", "Playing are children in the park."],
-    correctAnswer: "Children are playing in the park."
-  },
-  {
-    text: "Choose the correct article: I saw ___ elephant in the zoo.",
-    options: ["a", "an", "the", "no article"],
-    correctAnswer: "an"
-  },
-  {
-    text: "Letter Writing: Write a letter to your friend telling him/her about your new school.",
-    options: [
-      "The letter should have proper format, greeting, body and closing.",
-      "Just mention name of school only.",
-      "No need to write complete letter, just one line is enough.",
-      "Write about any random topic."
-    ],
-    correctAnswer: "The letter should have proper format, greeting, body and closing."
-  },
-  {
-    text: "Choose the synonym of 'Big'.",
-    options: ["Small", "Large", "Tiny", "Little"],
-    correctAnswer: "Large"
-  },
-  {
-    text: "Correct the spelling: Frend",
-    options: ["Frand", "Friend", "Freind", "Frent"],
-    correctAnswer: "Friend"
-  },
+  // ===== Maths (10 Questions) =====
 
-  // ===== Hindi (10 Questions) =====
   {
-    text: "‘अच्छा’ शब्द का विलोम चुनिए।",
-    options: ["बुरा", "मीठा", "दिन", "खुश"],
-    correctAnswer: "बुरा"
+    text: "400 से 500 के बीच की ऐसी संख्या लिखिए जिसके इकाई का अंक 3 और दहाई का अंक 5 हो।",
+    options: ["453", "435", "523", "345"],
+    correctAnswer: "453"
   },
   {
-    text: "‘विद्यालय’ शब्द से वाक्य चुनिए।",
-    options: ["विद्यालय जा रहा हूँ।", "मैं खाना खा रहा हूँ।", "आसमान नीला है।", "पानी ठंडा है।"],
-    correctAnswer: "विद्यालय जा रहा हूँ।"
+    text: "मैं 2 अंकों की संख्या हूँ। मेरे अंकों का योगफल 7 है। मैं कौन-सी संख्या हूँ?",
+    options: ["25", "43", "34", "61"],
+    correctAnswer: "34"
   },
   {
-    text: "रिक्त स्थान भरिए: गीता ____ (पढ़ना) रही है।",
-    options: ["पढ़", "पढ़ता", "पढ़ती", "पढ़ी"],
-    correctAnswer: "पढ़"
+    text: "एक रेलगाड़ी में 623 लोग थे। पटना रेलवे स्टेशन पर 262 लोग उतर गए। अब कितने लोग रह गए?",
+    options: ["361", "380", "451", "300"],
+    correctAnswer: "361"
   },
   {
-    text: "संधि विच्छेद कीजिए: रामायण",
-    options: ["राम+अयन", "र+अमायण", "राम+आयन", "रा+मायण"],
-    correctAnswer: "राम+आयन"
+    text: "एक विद्यालय में 1234 बच्चे थे। इनमें से 239 बच्चे दूसरे विद्यालय में चले गए। अब कितने बच्चे स्कूल में हैं?",
+    options: ["995", "1005", "1095", "999"],
+    correctAnswer: "995"
   },
   {
-    text: "‘बड़ा’ शब्द का पर्यायवाची चुनिए।",
-    options: ["छोटा", "विशाल", "पतला", "लंबा"],
-    correctAnswer: "विशाल"
+    text: "पानी की टंकी बनाने के लिए 6228 ईंटें चाहिए। हरजीराम ने पहले 2315 ईंटें मंगवाई। अब उसे कितनी ईंटें और मंगवानी पड़ेंगी?",
+    options: ["3913", "4000", "3900", "4013"],
+    correctAnswer: "3913"
   },
   {
-    text: "‘प’ से शुरू होने वाला सही शब्द चुनिए।",
-    options: ["पानी", "किताब", "फल", "घर"],
+    text: "गीता के पास 3880 मोती हैं। उसकी बहन श्यामा भी बाजार से 1015 मोती लाई। किसके पास अधिक मोती हैं और कितने अधिक?",
+    options: [
+      "गीता के पास 2865 अधिक",
+      "श्यामा के पास 2865 अधिक",
+      "गीता के पास 1015 अधिक",
+      "गीता के पास 2865 कम"
+    ],
+    correctAnswer: "गीता के पास 2865 अधिक"
+  },
+  {
+    text: "रूपडीह गाँव में कुल 4236 विद्यार्थी हैं। यदि इनमें से छात्रों की संख्या 2965 हो, तो छात्राओं की संख्या कितनी होगी?",
+    options: ["1271", "1200", "1300", "1261"],
+    correctAnswer: "1271"
+  },
+  {
+    text: "पिपरा गाँव में पुल निर्माण में 2900 बोरे सीमेंट की जरूरत है। इनमें से 1099 बोरे आ गए। अब और कितने बोरे चाहिए?",
+    options: ["1811", "1801", "1799", "2001"],
+    correctAnswer: "1811"
+  },
+  {
+    text: "एक अभयारण्य में कुछ हिरण थे। वहाँ 2320 हिरण और लाए गए। अब उनकी संख्या 7563 हो गई। पहले वहाँ कितने हिरण थे?",
+    options: ["5243", "5223", "5343", "5000"],
+    correctAnswer: "5243"
+  },
+  {
+    text: "एक टेलीविजन व रेडियो का मूल्य 9875 रुपये है। यदि रेडियो का मूल्य 1899 रुपये है, तो टेलीविजन का मूल्य कितना होगा?",
+    options: ["7976", "8000", "7500", "7975"],
+    correctAnswer: "7976"
+  },
+    {
+    text: "'दिन' का विलोम शब्द क्या है?",
+    options: ["रात", "शाम", "उजाला", "सवेरा"],
+    correctAnswer: "रात"
+  },
+  {
+    text: "'पढ़ना' का समानार्थी शब्द कौन सा है?",
+    options: ["लिखना", "रटना", "अध्ययन", "बोलना"],
+    correctAnswer: "अध्ययन"
+  },
+  {
+    text: "'पेड़' का बहुवचन क्या है?",
+    options: ["पेड़ें", "पेड़ो", "पेड़", "पेड़ोँ"],
+    correctAnswer: "पेड़"
+  },
+  {
+    text: "'राम स्कूल जाता है।' इस वाक्य में कर्ता कौन है?",
+    options: ["स्कूल", "जाता", "है", "राम"],
+    correctAnswer: "राम"
+  },
+  {
+    text: "'खुश' का विलोम शब्द कौन सा है?",
+    options: ["हँसना", "रोना", "उदास", "अच्छा"],
+    correctAnswer: "उदास"
+  },
+  {
+    text: "'जल' का पर्यायवाची शब्द कौन सा है?",
+    options: ["पानी", "नदी", "समुंदर", "गीला"],
     correctAnswer: "पानी"
   },
   {
-    text: "वाक्य में क्रिया पहचानिए: मोहन खेत में काम कर रहा है।",
-    options: ["मोहन", "खेत", "काम", "कर रहा है"],
-    correctAnswer: "कर रहा है"
+    text: "'नीला' शब्द कौन-सा शब्द भेद है?",
+    options: ["संज्ञा", "विशेषण", "क्रिया", "सर्वनाम"],
+    correctAnswer: "विशेषण"
   },
   {
-    text: "‘मेहनत का फल मीठा होता है’ अनुच्छेद का मुख्य विचार क्या है?",
-    options: ["मेहनत का कोई महत्व नहीं है।", "मेहनत करने से सफलता मिलती है।", "मेहनत करने से दुख मिलता है।", "मेहनत बेकार है।"],
-    correctAnswer: "मेहनत करने से सफलता मिलती है।"
+    text: "'फल खाना' में 'खाना' कौन सा शब्द भेद है?",
+    options: ["संज्ञा", "क्रिया", "विशेषण", "सर्वनाम"],
+    correctAnswer: "क्रिया"
   },
   {
-    text: "‘भी’ अव्यय से सही वाक्य चुनिए।",
-    options: ["वह भी आ रहा है।", "वह जा है।", "मैं घर।", "हम खेल रहे।"],
-    correctAnswer: "वह भी आ रहा है।"
+    text: "'गाय दूध देती है।' वाक्य में 'दूध' कौन सा शब्द भेद है?",
+    options: ["संज्ञा", "क्रिया", "सर्वनाम", "विशेषण"],
+    correctAnswer: "संज्ञा"
   },
   {
-    text: "रिक्त स्थान भरिए: ____ मेरा दोस्त है।",
-    options: ["तू", "यह", "मैं", "कौन"],
-    correctAnswer: "यह"
+    text: "'किताब पढ़ो' किस प्रकार का वाक्य है?",
+    options: ["प्रश्नवाचक", "आज्ञावाचक", "विधानवाचक", "विस्मयादिबोधक"],
+    correctAnswer: "आज्ञावाचक"
   },
-
-  // ===== Math (10 Questions) =====
-  {
-    text: "Solve: 345 + 768",
-    options: ["1013", "1103", "1113", "1123"],
-    correctAnswer: "1113"
+    {
+    text: "Translate into English: 'मैं स्कूल जा रहा हूँ।'",
+    options: ["I am playing.", "I am going to school.", "I am eating food.", "I am reading a book."],
+    correctAnswer: "I am going to school."
   },
   {
-    text: "Solve: 902 – 587",
-    options: ["315", "325", "335", "345"],
-    correctAnswer: "315"
+    text: "Translate into Hindi: 'This is my book.'",
+    options: ["यह मेरी पेंसिल है।", "यह मेरी किताब है।", "यह मेरा बैग है।", "यह मेरी कॉपी है।"],
+    correctAnswer: "यह मेरी किताब है।"
   },
   {
-    text: "Solve: 236 × 8",
-    options: ["1868", "1888", "1896", "1904"],
-    correctAnswer: "1888"
+    text: "Translate into English: 'वह खेल रहा है।'",
+    options: ["He is running.", "He is playing.", "He is sleeping.", "He is dancing."],
+    correctAnswer: "He is playing."
   },
   {
-    text: "Solve: 945 ÷ 9",
-    options: ["95", "100", "105", "110"],
-    correctAnswer: "105"
+    text: "Translate into Hindi: 'I like milk.'",
+    options: ["मुझे फल पसंद हैं।", "मुझे खेल पसंद है।", "मुझे दूध पसंद है।", "मुझे किताबें पसंद हैं।"],
+    correctAnswer: "मुझे दूध पसंद है।"
   },
   {
-    text: "Place value of 6 in 46,235 is:",
-    options: ["6", "60", "600", "6000"],
-    correctAnswer: "6000"
+    text: "Translate into English: 'सूरज चमक रहा है।'",
+    options: ["The sun is shining.", "The moon is shining.", "The sun is setting.", "The sky is blue."],
+    correctAnswer: "The sun is shining."
   },
   {
-    text: "Perimeter of rectangle with length=15 cm and breadth=10 cm:",
-    options: ["30 cm", "40 cm", "50 cm", "60 cm"],
-    correctAnswer: "50 cm"
+    text: "Translate into Hindi: 'We are friends.'",
+    options: ["हम पढ़ रहे हैं।", "हम दोस्त हैं।", "हम खेल रहे हैं।", "हम खा रहे हैं।"],
+    correctAnswer: "हम दोस्त हैं।"
   },
   {
-    text: "Convert 2500 m to km.",
-    options: ["2 km 50 m", "2 km 500 m", "25 km", "250 km"],
-    correctAnswer: "2 km 500 m"
+    text: "Translate into English: 'यह मेरी पेंसिल है।'",
+    options: ["This is my pen.", "This is my book.", "This is my pencil.", "This is my bag."],
+    correctAnswer: "This is my pencil."
   },
   {
-    text: "Sum of first 10 natural numbers:",
-    options: ["45", "50", "55", "60"],
-    correctAnswer: "55"
+    text: "Translate into Hindi: 'She is dancing.'",
+    options: ["वह पढ़ रही है।", "वह गा रही है।", "वह नाच रही है।", "वह दौड़ रही है।"],
+    correctAnswer: "वह नाच रही है।"
   },
   {
-    text: "A shopkeeper sells 325 pencils in 1 day. Pencils sold in 15 days:",
-    options: ["4725", "4825", "4900", "5000"],
-    correctAnswer: "4875"
+    text: "Translate into English: 'पापा ऑफिस जा रहे हैं।'",
+    options: ["Father is coming home.", "Father is eating food.", "Father is going to the office.", "Father is watching TV."],
+    correctAnswer: "Father is going to the office."
   },
   {
-    text: "Cost of 1 chair is ₹750. Cost of 12 chairs:",
-    options: ["₹8500", "₹8800", "₹8900", "₹9000"],
-    correctAnswer: "₹9000"
+    text: "Translate into Hindi: 'The cat is on the mat.'",
+    options: ["कुत्ता चटाई पर है।", "बिल्ली चटाई पर है।", "बिल्ली कुर्सी पर है।", "कुत्ता मेज पर है।"],
+    correctAnswer: "बिल्ली चटाई पर है।"
   }
 ];
 
